@@ -7,11 +7,11 @@ namespace OOP___HW
         static void Main(string[] args)
         {
             var dungeon = new Dungeon();
-            var weapon = new Weapon(10);
+            var weapon = new Weapon(10);//////
             while (true)
             {
                 dungeon.Update();
-                weapon.DoDamage(10);
+                weapon.DoDamage(10);//////
 
             }
         }

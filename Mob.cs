@@ -17,7 +17,7 @@ namespace OOP___HW
         public void Refresh()
         {
             int i = 0;
-            foreach (var mob in mobs)
+            foreach (var mob in mobs)//////////
             {
                 if (mob[i].HealthPoints > 0)
                     Console.WriteLine($"{mob[i]}");

@@ -19,7 +19,7 @@ namespace OOP___HW
             {
                 return Damage;
             }
-            return 0;
+            return 0;//////////
         }
     }
 }
