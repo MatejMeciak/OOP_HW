@@ -1,31 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace OOP___HW
 {
     class Dungeon
     {
-        private readonly List<Mob> mobs;
+        private readonly List<EnemyMob> mobs;
         public Dungeon()
         {
-            mobs = new List<Mob>
+            mobs = new List<EnemyMob>
             {
-                new Mob("Big Foot", 100),
-                new Mob("Alien Brain", 150),
-                new Mob("Mad Toast", 300),
-                new Mob("Dudy", 500),
-                new Mob("ULTRABIGSUPERSKELLY", 1000),
+                new EnemyMob("Big Foot", 100),
+                new EnemyMob("Alien Brain", 150),
+                new EnemyMob("Mad Toast", 300),
+                new EnemyMob("Dudy", 500),
+                new EnemyMob("ULTRABIGSUPERSKELLY", 1000),
             };
                 
         }
-        public void Update()
+        public void PrintCurrentMobInfo() => GetCurrentMob()?.PrintInfo();
+
+        public void DoDamage(int damage)
         {
-            foreach(var mob in mobs)
-            {
-                mob.Refresh();
-            }
+            var mob = GetCurrentMob();
+
+            mob.HealthPoints -= damage;
+            mob.PrintInfo();
+
+            if (mob.HealthPoints <= 0)
+                PrintCurrentMobInfo();
         }
+
+        public bool IsCompleted() => !mobs.Where(mob => mob.HealthPoints > 0).Any();
+
+        private EnemyMob GetCurrentMob() => mobs.Where(mob => mob.HealthPoints > 0).FirstOrDefault();
     }
                 
 }

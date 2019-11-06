@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace OOP___HW
 {
@@ -7,12 +8,23 @@ namespace OOP___HW
         static void Main(string[] args)
         {
             var dungeon = new Dungeon();
-            var weapon = new Weapon(10);//////
+            dungeon.PrintCurrentMobInfo();
             while (true)
             {
-                dungeon.Update();
-                weapon.DoDamage(10);//////
+                if (dungeon.IsCompleted())
+                {
+                    Console.WriteLine("Congratulations!");
+                    Thread.Sleep(1000);
+                    return;
+                }
 
+                if (Console.ReadKey().Key == ConsoleKey.Spacebar)
+                    dungeon.DoDamage(10);
+                else if (Console.ReadKey().Key == ConsoleKey.Escape)
+                {
+                    Console.WriteLine("FF");
+                    return;
+                }
             }
         }
     }
